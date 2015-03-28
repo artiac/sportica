@@ -33,7 +33,7 @@
 		        </div>
 		        <div class="row">
 		        	<div class="form-group col-md-6">
-	                	<label>Position</label>
+	                	<label>Position</label>   
 	                    {{Form::text('position','',array("class"=>"form-control", "placeholder"=>"Position"))}}
 	                    <span>{{$errors->first('position')}}</span>
 	                </div>
