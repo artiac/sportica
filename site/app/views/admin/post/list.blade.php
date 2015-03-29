@@ -23,8 +23,8 @@
 		        <td>{{$post->category}}</td>
 		        <td>{{$post->is_topic}}</td>
 		        <td>
-		        	{{ Form::open(array("url"=>"/admin/post/delete".$post->id,'role' => 'form', 'method' => 'get')) }}
-		        	{{ link_to('admin/post/edit'.$post->id, 'Edit', array('class' => 'btn btn-s-md btn-info')) }}
+		        	{{ Form::open(array("url"=>"/admin/post/delete/".$post->id,'role' => 'form', 'method' => 'get')) }}
+		        	{{ link_to('admin/post/edit/'.$post->id, 'Edit', array('class' => 'btn btn-s-md btn-info')) }}
 		        	<button class="btn btn-s-md btn-danger" type="submit">Delete</button>
 		        	{{Form::close()}}
 		        </td>

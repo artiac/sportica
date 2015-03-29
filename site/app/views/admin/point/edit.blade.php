@@ -1,6 +1,6 @@
 <div class="m-b-md">
   <h1 class="m-b-none">Deal Type</h1><br>
-  {{link_to_route('admin.point.index', "Go Back" , $parameters = array() , $attributes = array('class'=>'btn btn-s-md btn-warning')) }}
+  {{HTML::link('/admin.point', "Go Back" ,['class'=>'btn btn-s-md btn-warning']) }}
 </div>
 @if(Session::has('success'))
 	<div class="alert alert-success">
@@ -24,8 +24,8 @@
 		            <div class="row">
 		        	<div class="form-group col-md-6">
 			          <label>Category</label>
-			         {{Form::select('categoryid', $categories , $point->category_id,["class"=>"form-control"])}}
-			          <span class="parsley-error-list"><?php echo $errors->first('category'); ?></span>
+			         {{Form::select('category_id', $categories , $point->category_id,["class"=>"form-control"])}}
+			          <span class="parsley-error-list"><?php echo $errors->first('category_id'); ?></span>
 			        </div>
 			        <div class="form-group col-md-6">
 			          <label>Team</label>

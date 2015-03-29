@@ -7,7 +7,7 @@ class PostController extends BaseController {
 	public function index(){
         $this->layout->sidebar = 'post';
 		$this->layout->subsidebar = 0;
-        $post = Post::get();
+        $posts = Post::get();
 
 		$category = Category::lists('category','id');
         $category[0]="Select";
@@ -28,13 +28,13 @@ class PostController extends BaseController {
 
         
         $this->layout->main = View::make("admin.post.index", ["category" => $category,"sports" => $sports,"teams" => $teams,"post_list"=>$post_list]);
-		$this->layout->list = View::make("admin.post.list", array('posts' => $post));
+		$this->layout->list = View::make("admin.post.list", array('posts' => $posts));
 	}
 
 	public function getedit($id){
         $this->layout->sidebar = 'post';
         $this->layout->subsidebar = 0;
-        $post = Post::get();
+        $posts = Post::get();
 
         $category = Category::lists('category','id');
         $category[0]="Select";
@@ -46,14 +46,10 @@ class PostController extends BaseController {
         ksort($teams);
 
 
-        $post_list = Post::lists('post','id');
-        $post_list[0]="None";
-        ksort($post_list);
-
         $post = Post::find($id);
         $category = DB::table('categories')->lists('category','id');
-        $this->layout->main = View::make("admin.post.edit", ["category" => $category,"teams" => $teams,"post_list"=>$post_list, "post" => $post ]);
-        $this->layout->list = View::make("admin.post.list", array('posts' => $post,"category" => $category));
+        $this->layout->main = View::make("admin.post.edit", ["category" => $category,"teams" => $teams, "post" => $post ]);
+        $this->layout->list = View::make("admin.post.list", array('posts' => $posts,"category" => $category));
 	}
 
      public function getPosts(){
@@ -63,7 +59,7 @@ class PostController extends BaseController {
         $category = DB::table('categories')->lists('category','id');
         $teams = DB::table('categories')->lists('category','id');
         $sports = DB::table('sports')->lists('sport','id');
-        $this->layout->main = View::make("admin.post.index",array("category" => $category,"teams" => $teams,"post"=>$post,"sports" => $sports));
+        $this->layout->main = View::make("admin.post.index",array("category" => $category,"teams" => $teams,"posts"=>$post,"sports" => $sports));
         $this->layout->list = View::make("admin.post.list", array('posts' => $post,"category" => $category,"teams" => $teams,"sports" => $sports));;
 
     }
@@ -107,8 +103,6 @@ class PostController extends BaseController {
         ];
         $validator = Validator::make($credentials, $rules);
         if ($validator->passes()) {
-            $count = Post::where('post',Input::get('post'))->where('id','!=',$id)->count();
-            if($count == 0){
                 $post = Post::find($id);
                 $post->title = Input::get('title');
                 $post->type = Input::get('type');
@@ -121,17 +115,14 @@ class PostController extends BaseController {
                 return Redirect::Back()->with('failure', 'post name is already taken')->withErrors($validator)->withInput();
             }
             
-        } else {
-            return Redirect::Back()->withErrors($validator)->withInput();
-        }
-	}
+        } 
 
 	public function getdelete($id){
         $post = Post::find($id);
 		if($post->delete())
-    		return Redirect::route('admin.post.index')->with('success', 'Deal type successfully deleted');
+    		return Redirect::Back()->with('success', 'Deal type successfully deleted');
     	else
-    		return Redirect::route('admin.post.index')->with('success', 'Deal type can\'t be deleted');
+    		return Redirect::Back()->with('success', 'Deal type can\'t be deleted');
 	}
 
 }

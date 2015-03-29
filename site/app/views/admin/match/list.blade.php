@@ -25,7 +25,7 @@
 		        <td>{{$match->time}}</td>
 		        <td>{{$match->venue}}</td>
 		        <td>
-		        	{{ Form::open(array("url"=>"/admin/match/delete".$match->id,'role' => 'form', 'method' => 'get')) }}
+		        	{{ Form::open(array("url"=>"/admin/match/delete/".$match->id,'role' => 'form', 'method' => 'get')) }}
 		        	{{ link_to('admin/match/edit/'.$match->id, 'Edit', array('class' => 'btn btn-s-md btn-info')) }}
 		        	<button class="btn btn-s-md btn-danger" type="submit">Delete</button>
 		        	{{Form::close()}}

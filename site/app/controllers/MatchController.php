@@ -116,8 +116,6 @@ class MatchController extends BaseController {
         ];
         $validator = Validator::make($credentials, $rules);
         if ($validator->passes()) {
-            $count = Match::where('match',Input::get('match'))->where('id','!=',$id)->count();
-            if($count == 0){
                 $match = Match::find($id);
                 $match->sport_id = Input::get('sport_id');
                 $match->league_type = Input::get('league_type');
@@ -127,23 +125,24 @@ class MatchController extends BaseController {
                 $match->date = Input::get('date');
                 $match->time = Input::get('time');
                 $match->venue = Input::get('venue');
+                $match->win_team_id = Input::get('win_team_id');
+                $match->team1_score = Input::get('team1_score');
+                $match->team2_score = Input::get('team2_score');
+                $match->team1_remark = Input::get('team1_remark');
+                $match->team2_remark = Input::get('team2_remark');
                 $match->save();
                 return Redirect::Back()->with('success', 'Successfully Updated');
             } else {
                 return Redirect::Back()->with('failure', 'match name is already taken')->withErrors($validator)->withInput();
             }
-            
-        } else {
-            return Redirect::Back()->withErrors($validator)->withInput();
-        }
 	}
 
 	public function getdelete($id){
         $match = Match::find($id);
 		if($match->delete())
-    		return Redirect::route('admin.match.index')->with('success', 'Deal type successfully deleted');
+    		return Redirect::Back()->with('success', 'Deal type successfully deleted');
     	else
-    		return Redirect::route('admin.match.index')->with('success', 'Deal type can\'t be deleted');
+    		return Redirect::Back()->with('success', 'Deal type can\'t be deleted');
 	}
 
 }

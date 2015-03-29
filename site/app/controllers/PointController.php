@@ -32,9 +32,9 @@ class PointController extends BaseController {
         $this->layout->subsidebar = 0;
         $points = Point::get();
 
-        $category = Category::lists('category','id');
-        $category[0]="Select";
-        ksort($category);
+        $categories = Category::lists('category','id');
+        $categories[0]="Select";
+        ksort($categories);
 
         $teams = Team::lists('category','id');
         $teams[0]="Select";
@@ -47,8 +47,8 @@ class PointController extends BaseController {
 
         $point = Point::find($id);
         $category = DB::table('categories')->where('level',2)->where('parent_id','=','category_id')->first();
-        $this->layout->main = View::make("admin.point.edit", ["category" => $category,"teams" => $teams,"point_list"=>$point_list, "point" => $point ]);
-        $this->layout->list = View::make("admin.point.list", array('points' => $points,"category" => $category));
+        $this->layout->main = View::make("admin.point.edit", ["categories" => $categories,"teams" => $teams,"point_list"=>$point_list, "point" => $point ]);
+        $this->layout->list = View::make("admin.point.list", array('points' => $points,"categories" => $categories));
 	}
 
      public function getPoints(){
@@ -139,9 +139,9 @@ class PointController extends BaseController {
 	public function getdelete($id){
         $point = Point::find($id);
 		if($point->delete())
-    		return Redirect::route('admin.point.index')->with('success', 'Deal type successfully deleted');
+    		return Redirect::Back()->with('success', 'Deal type successfully deleted');
     	else
-    		return Redirect::route('admin.point.index')->with('success', 'Deal type can\'t be deleted');
+    		return Redirect::Back()->with('success', 'Deal type can\'t be deleted');
 	}
 
 }

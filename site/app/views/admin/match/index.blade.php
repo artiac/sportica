@@ -84,3 +84,51 @@
 	  </section>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-md-12">
+	  <section class="panel panel-default">
+	    <header class="panel-heading font-bold">Add new</header>
+	    <div class="panel-body">
+        	{{Form::open(array("url"=>"/admin/match/edit" ,"method" => "PUT","role" => "form"))}}						    
+				<div class="row">
+					 <div class="form-group col-md-6">
+				    	<label>Win Team ID</label>
+				        {{Form::text('win_team_id','',array("class"=>"form-control", "placeholder"=>"Win Team ID"))}}
+				        <span>{{$errors->first('win_team_id')}}</span>
+				    </div>
+		        	<div class="form-group col-md-6">
+				    	<label>Team1 Score</label>
+				        {{Form::text('team1_score','',array("class"=>"form-control", "placeholder"=>"Team1 Score"))}}
+				        <span>{{$errors->first('team1_score')}}</span>
+				    </div>
+			    </div>	
+		         <div class="row">
+		         	   <div class="form-group col-md-6">
+					    	<label>Team2 Score</label>
+					        {{Form::text('team2_score','',array("class"=>"form-control", "placeholder"=>"Team2 Score"))}}
+					        <span>{{$errors->first('team2_score')}}</span>
+					    </div>
+		         	<div class="form-group col-md-6">
+				    	<label>Team1 Remark</label>
+				        {{Form::text('team1_remark','',array("class"=>"form-control", "placeholder"=>"Team1 Remark"))}}
+				        <span>{{$errors->first('team1_remark')}}</span>
+				    </div>	        	             
+		        </div>
+		         <div class="row">
+		         	 <div class="form-group col-md-6">
+					    	<label>Team2 Remark</label>
+					        {{Form::text('team2_remark','',array("class"=>"form-control", "placeholder"=>"Team2 Remark"))}}
+					        <span>{{$errors->first('team2_remark')}}</span>
+					    </div>
+	                </div>	               
+		        <div class="row">
+		        	<div class="col-md-12">
+		        		<button type="submit" class="btn btn-sm btn-primary">Submit</button>
+		        	</div>
+		        </div>
+		    {{ Form::close()}}
+	    </div>
+	  </section>
+	</div>
+</div>

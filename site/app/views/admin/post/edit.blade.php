@@ -1,6 +1,6 @@
 <div class="m-b-md">
   <h1 class="m-b-none">Deal Type</h1><br>
-  {{link_to_route('admin.point.index', "Go Back" , $parameters = array() , $attributes = array('class'=>'btn btn-s-md btn-warning')) }}
+  {{HTML::link('admin.post', "Go Back" ,['class'=>'btn btn-s-md btn-warning']) }}
 </div>
 @if(Session::has('success'))
 	<div class="alert alert-success">
@@ -19,7 +19,7 @@
 	  <section class="panel panel-default">
 	    <header class="panel-heading font-bold">Add new</header>
 	    <div class="panel-body">
-        	{{ Form::open(array("url"=>"/admin/post/edit".$point->id,'role' => 'form','method' => 'PUT')) }}
+        	{{ Form::open(array("url"=>"/admin/post/update/".$post->id,'role' => 'form','method' => 'PUT')) }}
 		       
 		          <div class="row">
 		        	<div class="form-group col-md-6">

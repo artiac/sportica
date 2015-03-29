@@ -35,8 +35,8 @@
 		        <td>{{$point->goal_difference}}</td>
 		        <td>{{$point->point}}</td>
 		        <td>
-		        	{{ Form::open(array("url"=>"/admin/point/delete".$point->id,'role' => 'form', 'method' => 'get')) }}
-		        	{{link_to('admin.point.edit'.$point->id, "Edit" , $parameters = array($point->id) , $attributes = array('class'=>'btn btn-s-md btn-info')) }}
+		        	{{ Form::open(array("url"=>"/admin/point/delete/".$point->id,'role' => 'form', 'method' => 'get')) }}
+		        	{{link_to('/admin/point/edit/'.$point->id, "Edit", array('class'=>'btn btn-s-md btn-info')) }}
 		        	<button class="btn btn-s-md btn-danger" type="submit">Delete</button>
 		        	{{Form::close()}}
 		        </td>

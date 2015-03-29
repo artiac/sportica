@@ -19,10 +19,10 @@
 	  <section class="panel panel-default">
 	    <header class="panel-heading font-bold">Add new</header>
 	    <div class="panel-body">
-        	{{ Form::open(array("url"=>"/admin/match/edit".$match->id,'role' => 'form','method' => 'PUT')) }}
+        	{{ Form::open(array("url"=>"/admin/match/update/".$match->id,'role' => 'form','method' => 'PUT')) }}
 		       
-		          	        <div class="row">
-		        	<div class="form-group col-md-6">
+		    <div class="row">
+		      	<div class="form-group col-md-6">
 			          <label>Sport</label>
 			          {{Form::select('sport_id', $sports , $match->sport_id,["class"=>"form-control"])}}
 			          <span class="parsley-error-list"><?php echo $errors->first('sport_id'); ?></span>
