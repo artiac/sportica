@@ -1,6 +1,6 @@
 <div class="m-b-md">
   <h1 class="m-b-none">Deal Type</h1><br>
-  {{HTML::link('admin.post', "Go Back" ,['class'=>'btn btn-s-md btn-warning']) }}
+  <a href="{{url('/admin/post')}}" class="btn btn-s-md btn-warning">Go Back</a>
 </div>
 @if(Session::has('success'))
 	<div class="alert alert-success">

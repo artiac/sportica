@@ -28,7 +28,7 @@ class MatchController extends BaseController {
         ksort($match_list);
 
         
-        $this->layout->main = View::make("admin.match.index", ["category" => $category,"sports" => $sports,"teams" => $teams,"match_list"=>$match_list]);
+        $this->layout->main = View::make("admin.match.index", ["category" => $category,"sports" => $sports,"teams" => $teams,"match_list"=>$match_list, "match" => $match]);
 		$this->layout->list = View::make("admin.match.list", array('matches' => $matches));
 	}
 
@@ -60,12 +60,12 @@ class MatchController extends BaseController {
         $this->layout->subsidebar = 0;
 
         $matches = DB::table('match')->join('categories','match.team1_id','=','categories.id')->Select('match.*','categories.category')->get();
-
+        $match = DB::table('match')->get();   
         $category = DB::table('categories')->lists('category','id');
         $teams = DB::table('categories')->lists('category','id');
         $sports = DB::table('sports')->lists('sport','id');
         
-        $this->layout->main = View::make("admin.match.index",array("category" => $category,"teams" => $teams,"sports" => $sports));
+        $this->layout->main = View::make("admin.match.index",array("category" => $category,"teams" => $teams,"sports" => $sports, "match" => $match));
         $this->layout->list = View::make("admin.match.list", array('matches' => $matches,"category" => $category,"teams" => $teams,"sports" => $sports));;
 
     }

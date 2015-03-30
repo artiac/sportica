@@ -1,6 +1,6 @@
 <div class="m-b-md">
   <h1 class="m-b-none">Deal Type</h1><br>
-  {{HTML::link('/admin.point', "Go Back" ,['class'=>'btn btn-s-md btn-warning']) }}
+  <a href="{{url('/admin/point')}}" class="btn btn-s-md btn-warning">Go Back</a>
 </div>
 @if(Session::has('success'))
 	<div class="alert alert-success">
@@ -19,7 +19,7 @@
 	  <section class="panel panel-default">
 	    <header class="panel-heading font-bold">Add new</header>
 	    <div class="panel-body">
-        	{{ Form::open(array("url"=>"/admin/point/edit".$point->id,'role' => 'form','method' => 'PUT')) }}
+        	{{ Form::open(array("url"=>"/admin/point/update/".$point->id,'role' => 'form','method' => 'PUT')) }}
 		       
 		            <div class="row">
 		        	<div class="form-group col-md-6">
@@ -61,8 +61,8 @@
 		         <div class="row">
 		        	<div class="form-group col-md-6">
 	                	<label>Goal For</label>
-	                    {{Form::text('goal_For',$point->goal_for,array("class"=>"form-control", "placeholder"=>"Enter Goal For"))}}
-	                    <span>{{$errors->first('goal_For')}}</span>
+	                    {{Form::text('goal_for',$point->goal_for,array("class"=>"form-control", "placeholder"=>"Enter Goal For"))}}
+	                    <span>{{$errors->first('goal_for')}}</span>
 	                </div>
 	                <div class="form-group col-md-6">
 	                	<label>Goal Against</label>
@@ -73,13 +73,13 @@
 		        <div class="row">
 		        	<div class="form-group col-md-6">
 	                	<label>Goal Difference</label>
-	                    {{Form::text('goal_difference',$point->difference,array("class"=>"form-control", "placeholder"=>"Enter Goal Difference"))}}
+	                    {{Form::text('goal_difference',$point->goal_difference,array("class"=>"form-control", "placeholder"=>"Enter Goal Difference"))}}
 	                    <span>{{$errors->first('goal_difference')}}</span>
 	                </div>
 	                <div class="form-group col-md-6">
 	                	<label>Points</label>
-	                    {{Form::text('pont',$point->point,array("class"=>"form-control", "placeholder"=>"Enter Points"))}}
-	                    <span>{{$errors->first('pont')}}</span>
+	                    {{Form::text('point',$point->point,array("class"=>"form-control", "placeholder"=>"Enter Points"))}}
+	                    <span>{{$errors->first('point')}}</span>
 	                </div>
 		        </div>	
 
